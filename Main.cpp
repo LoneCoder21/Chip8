@@ -3,7 +3,7 @@
 
 #include "Chip8.h"
 
-int main(int, char**) 
+int main(int argc, char* argv[])
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
@@ -24,7 +24,7 @@ int main(int, char**)
 	int numKeys;
 	const char* keys = (char*)SDL_GetKeyboardState(&numKeys);
 
-	std::string path = "res/Pong.ch8";
+	std::string path = "res/Brick.ch8";
 
 	Chip8 emu;
 	emu.setKeyMap(keys);

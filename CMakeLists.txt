@@ -1,25 +1,15 @@
 cmake_minimum_required(VERSION 3.10)
-
-add_subdirectory("vendor/SFML")
-
-project(LevelEditor)
-
+project(Chip8)
 set(CMAKE_CXX_STANDARD 17)
 
-link_directories("vendor/SFML/lib")
+link_directories(vendor/SDL2/lib/x64)
 
-add_executable(LevelEditor Main.cpp)
+file(GLOB Cs "*.h" "*.cpp")
+add_executable(Chip8 ${Cs})
 
-target_link_libraries(LevelEditor debug sfml-graphics-d.lib optimized sfml-graphics.lib)
-target_link_libraries(LevelEditor debug sfml-window-d.lib optimized sfml-window.lib)
-target_link_libraries(LevelEditor debug sfml-system-d.lib optimized sfml-system.lib)
+target_include_directories(Chip8 PRIVATE vendor/SDL2/include)
+target_link_libraries(Chip8 SDL2.lib)
+target_link_libraries(Chip8 SDL2main.lib)
 
-target_include_directories(LevelEditor PRIVATE "vendor/SFML/include")
-
-file(COPY vendor/SFML/lib/Debug/sfml-graphics-d-2.dll DESTINATION Debug/)
-file(COPY vendor/SFML/lib/Debug/sfml-window-d-2.dll DESTINATION Debug/)
-file(COPY vendor/SFML/lib/Debug/sfml-system-d-2.dll DESTINATION Debug/)
-
-file(COPY vendor/SFML/lib/Release/sfml-graphics-2.dll DESTINATION Release)
-file(COPY vendor/SFML/lib/Release/sfml-window-2.dll DESTINATION Release)
-file(COPY vendor/SFML/lib/Release/sfml-system-2.dll DESTINATION Release)
+file(COPY vendor/SDL2/lib/x64/SDL2.dll DESTINATION Debug/)
+file(COPY vendor/SDL2/lib/x64/SDL2.dll DESTINATION Release/)
